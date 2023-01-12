@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #eeeeee;
+    font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
+  }
+  
+  ul { list-style-type: none; }
+  
+  a {
+    color: #4800a5;
+    text-decoration: none;
+  }
+  
+  /** =======================
+   * Contenedor Principal
+   ===========================*/
+
+  
+  .accordion {
+   
+    max-width: 90%;
+    background: #eeeeee;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+  }
+  
+  .accordion .link {
+    cursor: pointer;
+    
+    padding: 20px 20px 0px  20px;
+    color: #1a1a1a;
+    font-size: 16px;
+    font-weight: 700;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+  }
+  
+  .accordion li:last-child .link { border-bottom: 0; }
+  
+  .accordion li i {
+    position: absolute;
+
+    left: 12px;
+    font-size: 20px;
+    color: #1a1a1a;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+  }
+  
+  .accordion li i.fa-chevron-down {
+    right: 12px;
+    left: auto;
+    font-size: 20px;
+  }
+  
+  .accordion li.open .link { color: #4800a5; }
+  
+  .accordion li.open i { color: #4800a5; }
+  
+  .accordion li.open i.fa-chevron-down {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  
+  /**
+   * Submenu
+   -----------------------------*/
+  
+  
+  .submenu {
+    display: none;
+    background: #eeeeee;
+    font-size: 15px;
+    text-align: justify;
+    padding-bottom: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  
+  .submenu li { border-bottom: 1px solid #4b4a5e; }
+  
+  .submenu a {
+    display: block;
+    text-decoration: none;
+    color: #1a1a1a;
+    padding-left: 42px;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+  }
+  
+  .submenu a:hover {
+    background: #4800a5;
+    color: #FFF;
+  }
