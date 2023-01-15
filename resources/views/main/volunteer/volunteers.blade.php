@@ -239,21 +239,21 @@ function fillText(uid){
         add.style.display='inline-block';
         heading.innerHTML="Add Volunteer"
     }else{
-       <!-- fill text feild with selected user data to edit -->
+       <!-- fill text feild with selected user data to edit -->   
     --uid;
     id = userlist[uid][0]
     firebase.database().ref('Users/' + id ).once("value", snap => {
         modName.value=snap.val().userName;
         modMail.value=snap.val().mail;
-
+        listholder.innerHTML=" ";
         <!-- display assistance code list in modal -->
        for(var i=0;i<snap.val().code.length;i++){
         if(snap.val().code[i]!=undefined){
         codeList.push(snap.val().code[i]);
-    listholder.innerHTML +='<li><span class="listName">'+snap.val().code[i]+'</span><a href="javascript:delItem(id,'+i+')" id="delItem" class=" remove" style="margin-left:70px"><i class="bi bi-trash"></i></a></li> ';
-       
+    listholder.innerHTML +='<li><span class="listName">'+snap.val().code[i]+'</span><a href="javascript:delItem(id,'+i+')" id="delItem" class=" remove" style="margin-left:70px"><i class="bi bi-trash"></i></a></li> ';    
   }
 }
+
         add.style.display='none';
         assistCode.style.display = 'inline-block';
         heading.innerHTML="Edit Volunteer"
@@ -294,7 +294,6 @@ function Add(){
         });      
 } 
    else{
-
     <!-- check the assistance code entered of blind user -->
     checkcode();
    }

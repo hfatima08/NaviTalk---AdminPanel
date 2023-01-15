@@ -87,12 +87,13 @@ var body = document.getElementById('accordionFlushExample');
 
     <!-- display blind user name on front, accordion item -->
     h2.innerHTML='<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">'+data.val().userName+'</button>';
+  
     h6.innerHTML="Volunteer(s):"
 
     bcode=data.val().code;
 
-<!-- order users by assistance code -->
-    firebase.database().ref("Users").orderByChild("code").on('value', function(snapshot){
+<!-- get users by  role volunteer and match code with blind user code -->
+    firebase.database().ref("Users").orderByChild("role").equalTo("Volunteer").on('value', function(snapshot){
         if(snapshot.exists()){
      var div2 = document.createElement('div');
     div2.className ="accordion-collapse collapse";
@@ -101,9 +102,6 @@ var body = document.getElementById('accordionFlushExample');
    div2.setAttribute("data-bs-parent","#accordionFlushExample");
 
         snapshot.forEach((data) => {
-    <!-- check user role to be volunteer -->
-    if(data.val().role=="Volunteer" ){
-
         <!-- match code of volunteer and blind user -->
         for(var i=0;i<=data.val().code.length;i++){
             if(data.val().code[i]==bcode[0]){
@@ -111,7 +109,6 @@ var body = document.getElementById('accordionFlushExample');
         <!-- display volunteer name in accordion body -->
       p.innerHTML+= '- \t <b>Name:</b> '+data.val().userName+' <br> <b>Email:</b> '+data.val().mail;
             }
-        }
     }
 });
 }else{

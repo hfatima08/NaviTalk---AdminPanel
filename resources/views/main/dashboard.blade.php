@@ -8,7 +8,6 @@ NaviTalk - Admin Dashboard
 @endsection
 
 @section('menu')
-
 <!-- Side bar Page Links  -->
 <li class="sidebar-item active">
 <a href="{{route('dashboard')}}" class='sidebar-link active'>

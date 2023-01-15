@@ -121,6 +121,7 @@ function SelectAllData(){
     blindNum=1;
 
     document.getElementById('UserData').innerHTML="";
+
     firebase.database().ref('Users').once('value',function(snapshot){
         snapshot.forEach(function(childSnapshot){
             var role = childSnapshot.val().role;
@@ -210,14 +211,12 @@ function fillText(uid){
         add.style.display='none';
         heading.innerHTML="Edit User"
         edit.style.display='inline-block';
-
     });
 }
 }
 
 <!-- === Add new user to firebase function === -->
 function Add(){
-
   <!-- validations -->
    if(modName.value=="" || modMail.value=="" || modCode.value==0){
     swal({
@@ -266,9 +265,9 @@ var myRef = firebase.database().ref("Users").push();
   icon: "success",
   button: "OK",
 }).then((value) => {
-            location.reload(true);
-            SelectAllData();
-                $("#editmodal").modal('hide');
+            location.reload(true); <!-- <refresh page -->
+            SelectAllData(); 
+            $("#editmodal").modal('hide');
 });
  <!-- error alert -->
 }).catch((error) => {
