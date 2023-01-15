@@ -107,7 +107,7 @@ var body = document.getElementById('accordionFlushExample');
             if(data.val().code[i]==bcode[0]){
 
         <!-- display volunteer name in accordion body -->
-      p.innerHTML+= '- \t <b>Name:</b> '+data.val().userName+' <br> <b>Email:</b> '+data.val().mail;
+      p.innerHTML+= '- \t <b>Name:</b> '+data.val().userName+' <br> <b>Email:</b> '+data.val().mail+'<br> <br>';
             }
     }
 });
