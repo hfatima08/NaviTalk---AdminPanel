@@ -299,10 +299,10 @@ function Add(){
    }
 } <!-- ===  End Add new user function === -->
 
-<!-- === Update user to firebase function === -->
+<!-- === check Update user details to firebase function === -->
 function update(){
     <!-- validations -->
-    if(modName.value=="" || modMail.value=="" || modCode.value==0){
+    if(modName.value=="" || modMail.value==""){
       swal({
   title: "Error!",
   text: "Fill each feild!",
@@ -311,7 +311,7 @@ function update(){
   dangerMode: true,
 });
    }
-   else if(modCode.value.length!=6){
+   else if(modCode.value.length!=6 && modCode.value.length!=0){
     swal({
   title: "Error!",
   text: "Enter a 6-digit code!",
@@ -330,14 +330,31 @@ function update(){
         });      
 } 
 <!-- update user code -->
-   else{
+   else {
+    if(modCode.value.length!=0){
         var num = modCode.value;
     firebase.database().ref("Users").orderByChild("code/0").equalTo(num).once("value", function (snapshot) {
     if (snapshot.exists()) { 
 
-    codeList.push(modCode.value);
-    
-    firebase.database().ref('Users/' + id ).update(
+    codeList.push(modCode.value); 
+    updateUser(); 
+  }else{
+      swal({
+        title: "Error!",
+        text: "Entered code doesnot match any blind user!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        });   
+  }
+    });
+}else{
+    updateUser();
+}
+}} <!-- === End check update details function === -->
+
+function updateUser(){
+  firebase.database().ref('Users/' + id ).update(
         {
             userName: modName.value,
             mail:modMail.value,
@@ -366,21 +383,8 @@ function update(){
                                 SelectAllData();
                                 $("#editmodal").modal('hide');
                     });
-            }
-        }
-    ) }else{
-      swal({
-        title: "Error!",
-        text: "Entered code doesnot match any blind user!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        });   
-  }
-    });
-}
-} <!-- === End update user function === -->
-
+                  }}
+    ); }
 <!-- === Delete user from firebase function === -->
 function deluser(uid){
     <!-- confirmation alert -->
